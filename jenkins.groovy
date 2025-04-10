@@ -19,7 +19,7 @@ node {
             echo 'Running tests...'
             try {
                 // Run unit tests or integration tests
-                sh 'mvn test'  // or 'gradle test'
+                sh """ 'mvn test'"""  // or 'gradle test'
                 echo 'Tests passed!'
             } catch (Exception e) {
                 buildStatus = 'failure'
@@ -31,7 +31,7 @@ node {
             if (buildStatus == 'success') {
                 echo 'Deploying to production environment...'
                 // Deploy to a production environment (e.g., Kubernetes, Docker, AWS)
-                sh 'kubectl apply -f deployment.yaml'  // Example for Kubernetes
+                sh """'kubectl apply -f deployment.yaml'"""  // Example for Kubernetes
                 echo 'Deployment successful!'
             } else {
                 error 'Build or test failed, skipping deployment!'
